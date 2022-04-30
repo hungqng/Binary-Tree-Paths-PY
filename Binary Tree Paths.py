@@ -25,3 +25,10 @@ class Solution:
             self.dfs(root.left, ls+str(root.val)+"->", res)
         if root.right:
             self.dfs(root.right, ls+str(root.val)+"->", res)
+
+        # Solution 2
+        if not root:
+            return []
+        return [str(root.val) + '->' + path
+            for kid in (root.left, root.right) if kid
+            for path in self.binaryTreePaths(kid)] or [str(root.val)]
